@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.inkomstTotal_item{ grid-area: inkomstTotal_item;}
+.kostnadTotal_item{grid-area: kostnadTotal_item;}
+.vinst_item{grid-area: vinst_item; }
+.inputform_item{grid-area: inputform_item;}
+.inkomstList_item{grid-area: inkomstList_item;}
+.kostnadList_item{grid-area: kostnadList_item;}
+
+body{
+    background: powderblue;
+    font-family: 'Alata', sans-serif;
+    color: paleturquoise;
+    letter-spacing: 2px;
+}
+
+.griditem{
+    background: sandybrown;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 50px;
+}
+
+li{
+    list-style: none;
+}
+
+/*
+input{
+    height: 2rem;
+    width: 80%;
+    margin: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 5px solid salmon;
+    border-radius: 10px;
+    background: none;
+    color: paleturquoise;
+
+}
+*/
+
+
+
+.wrapper{
+    display: grid;
+    grid-template-areas: 
+    'inkomstTotal_item kostnadTotal_item'
+    'vinst_item vinst_item'
+    'inputform_item inputform_item'
+    'inkomstList_item kostnadList_item';
+    background: salmon;
+    padding: 1rem;
+    gap: 1rem;
+    margin: 5rem;
+    border-radius: 30px;
+    
+}
+
