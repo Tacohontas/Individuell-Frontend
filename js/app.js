@@ -1,9 +1,3 @@
-//    console.log(Number(Produkt)+Produkt*Moms); //Number för att fixa till siffror istället för string.
-// document.querySelector("div").innerHTML = +Produkt+Produkt*Moms;
-
-
-
-//inkomstTotal.appendChild(skapaLi.textContent = "Det här är från JS");
 
 
 // Räknaknappen
@@ -14,31 +8,34 @@ addBtn.addEventListener("click", addToLists);
 
 function addToLists() {
     const skapaLi = document.createElement("li");               // Skapar ett <li> - element.
-    const inkomstList = document.querySelector(".inkomstList"); 
-    const kostnadList = document.querySelector(".kostnadList");
+    const inkomst__list = document.querySelector(".inkomst__list"); 
+    const utgifter__list = document.querySelector(".utgifter__list");
     const formName = document.querySelector("#name").value;
     const formValue = document.querySelector("#value").value;   // Selectar 
-    const selectorValue = document.querySelector("#selector").selectedIndex;
-    const inkomstTotal = document.querySelector(".inkomstTotal");
-    const inkomstTotalValue = document.querySelector(".inkomstTotal").innerHTML; // Det som är inuti inkomstTotal-div
-    const kostnadTotal = document.querySelector(".kostnadTotal");
-    const kostnadTotalValue = document.querySelector(".kostnadTotal").innerHTML;
+    // const selectorValue = document.querySelector("#selector").selectedIndex;
+    const radioValue = document.querySelectorAll(".radio__input");
+    const inkomst__total = document.querySelector(".inkomst__total");
+    const inkomst__totalValue = document.querySelector(".inkomst__total").innerHTML; // Det som är inuti inkomst__total-div
+    const utgifter__total = document.querySelector(".utgifter__total");
+    const utgifter__totalValue = document.querySelector(".utgifter__total").innerHTML;
     const totalDiv = document.querySelector(".vinst");
 
-    if(selectorValue === 0){ 
-        inkomstList.appendChild(skapaLi);
+    // if(selectorValue === 0){ 
+        if(radioValue[0].checked){
+        inkomst__list.appendChild(skapaLi);
         skapaLi.textContent = `${formName} ${formValue}:-`;
-        inkomstTotal.innerHTML = ((Number(inkomstTotalValue)) + (Number(formValue)));
+        inkomst__total.innerHTML = ((Number(inkomst__totalValue)) + (Number(formValue)));
 
     } else {
-        kostnadList.appendChild(skapaLi);
+        if(!formName === ""){
+        utgifter__list.appendChild(skapaLi);
         skapaLi.textContent = `${formName} ${formValue}:-`;
-        kostnadTotal.innerHTML = (Number(kostnadTotalValue)) + (Number(formValue));
-
+        utgifter__total.innerHTML = (Number(utgifter__totalValue)) + (Number(formValue));
+        }
     }
 
 
     // Räkna ut vinst
 
-    return totalDiv.innerHTML = inkomstTotal.innerHTML - kostnadTotal.innerHTML + "kr";
+    return totalDiv.innerHTML = inkomst__total.innerHTML - utgifter__total.innerHTML + "kr";
 }

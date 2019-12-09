@@ -6,32 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Individuell uppgift</title>
-    <script src="app.js" defer></script>
+    <script src="/js/app.js" defer></script>
     <link rel="stylesheet" href="/styles/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
 
 <body>
 
+    <!-- Input form -->
+    <section class="inputform-wrapper">
+        <div class="inputform-container">
+            <h2 class="input__header">Fyll i din peng!</h2>
+            <input type="text" name="" id="name" class="input__form" placeholder="Fyll i beskrivning">
+            <!-- <select id="selector">
+                <option class="option">+</option>
+                <option class="option">-</option>
+            </select> -->
+            <div class="radio-container">
+                <label>
+                    <input type="radio" class="radio__input" name="selector" value="+">
+                    <span>
+                        <i class="fas fa-plus fa-2x"></i>
+                    </span>
+                </label>
+                <label>
+                    <input type="radio" class="radio__input" name="selector" value="-">
+                    <span>
+                        <i class="fas fa-minus fa-2x"></i>
+                    </span>
+                </label>
+            </div>
+            <input type="number" name="" id="value" class="input__form" placeholder="0,00">
+            <button class="add">Lägg till</button>
+        </div>
+    </section>
+
+    <div class="list-wrapper">
 
 
+        <!-- Lista över inkomster -->
 
+        <div class="list-container">
+            <h2 class="list__header">Lista över inkomster</h2>
+            <ul class="inkomst__list list-item"></ul>
 
-    <div class="wrapper">
-
-        <!-- Inkomst totalsumma -->
-
-        <div class="inkomstTotal_item griditem">
-            <h3>Inkomst totalsumma:</h3>
-            <div class="inkomstTotal"></div>
+            <!-- Inkomst totalsumma -->
+            <div class="total-container">
+                <h3 class="total__header">Totalsumma</h3>
+                <div class="inkomst__total total-item"></div>
+            </div>
         </div>
 
-        <!-- Kostnad totalsumma -->
 
-        <div class="kostnadTotal_item griditem">
-            <h3>Kostnad totalsumma:</h3>
-            <div class="kostnadTotal"></div>
+        <!-- Lista över utgifter -->
+        <div class="list-container">
+            <h2 class="list__header">Lista över utgifter</h2>
+            <ul class="utgifter__list list-item"></ul>
+
+            <!-- Utgifter totalsumma -->
+            <div class="total-container">
+                <h3 class="total__header">Totalsumma</h3>
+                <div class="utgifter__total total-item"></div>
+            </div>
         </div>
 
         <!-- Vinst  -->
@@ -40,34 +77,6 @@
             <h3>Vinst:</h3>
             <div class="vinst"></div>
         </div>
-
-        <!-- Input form -->
-
-        <div class="inputform_item griditem">
-            <input type="text" name="" id="name" placeholder="Ange namn">
-            <select id="selector">
-                <option class="option">+</option>
-                <option class="option">-</option>
-            </select>
-            <input type="number" name="" id="value" placeholder="Ange värde">
-
-            <br><button class="add">Lägg till</button>
-        </div>
-
-        <!-- Lista över inkomster -->
-
-        <div class="inkomstList_item griditem">
-            <h3>Lista över inkomster:</h3>
-            <ul class="inkomstList"></ul>
-        </div>
-
-        <!-- Lista över kostnader -->
-
-        <div class="kostnadList_item griditem">
-            <h3>Lista över kostnader:</h3>
-            <ul class="kostnadList"></ul>
-        </div>
-
 
     </div>
 

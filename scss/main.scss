@@ -1,63 +1,116 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.inkomstTotal_item{ grid-area: inkomstTotal_item;}
-.kostnadTotal_item{grid-area: kostnadTotal_item;}
-.vinst_item{grid-area: vinst_item; }
-.inputform_item{grid-area: inputform_item;}
-.inkomstList_item{grid-area: inkomstList_item;}
-.kostnadList_item{grid-area: kostnadList_item;}
+@import "variables.scss";
 
-body{
-    background: powderblue;
-    font-family: 'Alata', sans-serif;
-    color: paleturquoise;
-    letter-spacing: 2px;
+body {
+  background: $bg-col;
+  font-family: "Alata", sans-serif;
+  color: $font-col;
+  letter-spacing: 2px;
 }
 
-.griditem{
-    background: sandybrown;
-    padding: 1rem;
-    text-align: center;
-    border-radius: 50px;
+// --- Input form --- //
+
+.inputform-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
-li{
-    list-style: none;
+.inputform-container {
+  margin: 1rem 0 auto;
+  background: $box-col;
+  box-shadow: $shadow;
+  width: 20rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: 5px;
+  text-align: center;
 }
 
-/*
-input{
-    height: 2rem;
-    width: 80%;
+.input__header {
+  margin-bottom: 1rem;
+}
+
+.input__form {
+  height: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1rem; /* för att "nollställa" font-size. */
+  background: $box-col;
+  font-family: "Alata", sans-serif;
+  border: none;
+  border-bottom: 1px solid white;
+  color: $font-col;
+  &::placeholder {
+    color: $font-2nd;
+  }
+  resize: none;
+}
+
+
+.radio-container{
+    display: flex;
+    justify-content: space-evenly;
+    color: #FDD9D4;
     margin: 1rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 5px solid salmon;
-    border-radius: 10px;
-    background: none;
-    color: paleturquoise;
-
-}
-*/
-
-
-
-.wrapper{
-    display: grid;
-    grid-template-areas: 
-    'inkomstTotal_item kostnadTotal_item'
-    'vinst_item vinst_item'
-    'inputform_item inputform_item'
-    'inkomstList_item kostnadList_item';
-    background: salmon;
-    padding: 1rem;
-    gap: 1rem;
-    margin: 5rem;
-    border-radius: 30px;
-    
 }
 
+.radio__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radio__input:checked + span {
+  color: $font-col;
+}
+
+.list-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  margin: 1rem 12rem;
+  gap: 1rem;
+}
+
+.list-container {
+  border-radius: 5px;
+  box-shadow: $shadow;
+  padding: 1rem;
+  background: $box-col;
+}
+
+.list__header {
+  border-bottom: 2px solid white;
+}
+
+.total__header {
+  border-bottom: 1px solid white;
+}
+
+.total-container {
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.list-item {
+  color: $font-2nd;
+}
+
+.total-item {
+  &::after {
+    content: " kr";
+  }
+}
+
+li {
+  list-style: none;
+}
