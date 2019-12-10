@@ -1,6 +1,6 @@
-// test ta bort LI
-const listtest = document.getElementsByClassName("listtest"); // Skapar ett <li> - element.
-
+// test ta fram containers
+const inkomstBox = document.querySelector(".incomelist")
+const utgiftBox = document.querySelector(".expenselist")
 // bubblor!
 const helpBubble = document.querySelector(".helpbubble");
 const warningBubble = document.querySelector(".warningbubble");
@@ -17,7 +17,6 @@ for (let i = 0; i < removeIcon.length; i++)
   removeIcon[i].addEventListener("click", function() {
     this.parentElement.remove();
   });
-// Tar bort grej i listan:
 
 // Tar fram bubbla
 helpIcon.addEventListener("click", function() {
@@ -54,6 +53,7 @@ function addToLists() {
 
   if (formName !== "" && formValue !== "") {
     if (radioValue[0].checked) {
+      inkomstBox.style.display = "flex";
       inkomst__list.appendChild(skapaLi);
       skapaLi.setAttribute("class", "inkomst__li");
       skapaLi.innerHTML = `${formName} <span class="inkomst__li-price">${formValue}</span> ${createRemoveIcon}`;
@@ -62,23 +62,18 @@ function addToLists() {
         removeListIcon[i].addEventListener("click", function() {
           this.parentElement.remove();
         });
-      //   inkomstTotal.innerHTML = Number(inkomstTotalValue) + Number(formValue);
-
-      //   return (totalDiv.innerHTML =
-      //     inkomstTotal.innerHTML - utgifterTotal.innerHTML + "kr");
+     
     } else if (radioValue[1].checked) {
+      utgiftBox.style.display = "flex";
       utgifter__list.appendChild(skapaLi);
       skapaLi.setAttribute("class", "utgift__li");
       skapaLi.innerHTML = `${formName} <span class="utgifter__li-price">${formValue}</span> ${createRemoveIcon}`;
-      //   utgifterTotal.innerHTML = Number(utgifterTotalValue) + Number(formValue);
 
       for (let i = 0; i < removeListIcon.length; i++)
         removeListIcon[i].addEventListener("click", function() {
           this.parentElement.remove();
         });
 
-      //   return (totalDiv.innerHTML =
-      //     inkomstTotal.innerHTML - utgifterTotal.innerHTML + "kr");
     } else {
       // Om man inte valt värde i radio-input. (plus eller minus);
       console.log("välj selector");
@@ -111,14 +106,13 @@ inkomst__list.addEventListener("DOMSubtreeModified", updateIncome);
 
 function updateIncome() {
   const allInkomstSpan = document.querySelectorAll(".inkomst__li-price");
-
+  inSpanSum = 0;
   for (let i = 0; i < allInkomstSpan.length; i++) {
     inSpanSum += Number(allInkomstSpan[i].innerHTML);
   }
 
   inkomstTotal.innerHTML = `${Number(inSpanSum)} kr`;
   vinstTotal.innerHTML = `${inSpanSum - outSpanSum} kr`;
-
 }
 
 // Totalsumma utgifter
@@ -127,7 +121,7 @@ utgift__list.addEventListener("DOMSubtreeModified", updateOut);
 
 function updateOut() {
   const allUtgiftSpan = document.querySelectorAll(".utgifter__li-price");
-
+  outSpanSum = 0;
   for (let i = 0; i < allUtgiftSpan.length; i++) {
     outSpanSum += Number(allUtgiftSpan[i].innerHTML);
   }
@@ -135,5 +129,10 @@ function updateOut() {
   utgiftTotal.innerHTML = `${Number(outSpanSum)} kr`;
   vinstTotal.innerHTML = `${inSpanSum - outSpanSum} kr`;
 }
+
+vinstTotal.addEventListener("DOMSubtreeModified", function(){
+  const vinstcontainer = document.querySelector(".vinst-container");
+  vinstcontainer.style.display = "block";
+});
 
 

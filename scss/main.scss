@@ -122,15 +122,19 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .list-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  justify-content: center;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // grid-template-rows: 1fr;
   margin: 1rem auto;
   gap: 1rem;
   max-width: 327.5px * 2;
 }
 
 .list-container {
+  animation: fadein 0.3s;
+  margin: 1rem;
   border-radius: 5px;
   box-shadow: $shadow;
   padding: 1rem;
@@ -138,6 +142,17 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 300px;
+}
+
+// Inkomst-container
+.incomelist{
+  display: none;
+}
+
+// utgift-container
+.expenselist{
+  display: none;
 }
 
 .list__header {
@@ -191,6 +206,8 @@ li {
 
 .vinst-container{
   text-align: center;
+  display: none;
+  animation: fadein 0.8s;
 }
 
 
@@ -248,5 +265,20 @@ li {
   i {
     cursor: pointer;
     display: inline-block;
+  }
+}
+
+
+// Media queries
+
+@media screen and (max-width: 430px) {
+  .list-wrapper{
+    display:grid
+  }
+
+  .warningbubble{
+    width: 150px;
+    left: 60%;
+    top: 28%;
   }
 }
