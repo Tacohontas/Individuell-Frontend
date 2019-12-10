@@ -15,7 +15,7 @@ const createRemoveIcon = '<i class="removelisticon far fa-times-circle"></i>';
 // Tar bort bubbla
 for (let i = 0; i < removeIcon.length; i++)
   removeIcon[i].addEventListener("click", function() {
-    this.parentElement.remove();
+    this.parentElement.style.display = "none";
   });
 
 // Tar fram bubbla
