@@ -155,10 +155,15 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 10px;
 }
 
+.inkomst__li{
+}
+
 .list-item {
   color: $font-2nd;
 
   li {
+    animation: fadein 0.5s;
+
     &:hover {
       i {
         display: inline-block;
