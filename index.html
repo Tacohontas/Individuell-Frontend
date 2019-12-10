@@ -5,41 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Individuell uppgift</title>
-    <script src="/js/app.js" defer></script>
+    <title>Räkna pengen</title>
     <link rel="stylesheet" href="/styles/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <script src="/js/app.js" defer></script>
 </head>
 
 <body>
 
+
+    <!-- Bubblor-->
+    <div class="warningbubble">
+        <i class="removeIcon far fa-times-circle"></i>
+        <p class="warningtext"></p>
+    </div>
+
+    <div class="helpbubble">
+        <i class="removeIcon far fa-times-circle"></i>
+        <ul>
+            <li>1. Beskriv din inkomst eller utgift.</li>
+            <li>2. Välj + för inkomst eller - för utgift.</li>
+            <li>3. Skriv in summan.</li>
+            <li>4. Se din vinst!</li>
+            <ul>
+    </div>
+
     <!-- Input form -->
     <section class="inputform-wrapper">
+
         <div class="inputform-container">
-            <h2 class="input__header">Fyll i din peng!</h2>
-            <input type="text" name="" id="name" class="input__form" placeholder="Fyll i beskrivning">
-            <!-- <select id="selector">
-                <option class="option">+</option>
-                <option class="option">-</option>
-            </select> -->
-            <div class="radio-container">
-                <label>
-                    <input type="radio" class="radio__input" name="selector" value="+">
-                    <span>
-                        <i class="fas fa-plus fa-2x"></i>
-                    </span>
-                </label>
-                <label>
-                    <input type="radio" class="radio__input" name="selector" value="-">
-                    <span>
-                        <i class="fas fa-minus fa-2x"></i>
-                    </span>
-                </label>
+            <i class="helpIcon fas fa-question-circle"></i>
+            <div class="inputform-grid">
+                <h2 class="input__header">Räkna ut din vinst!</h2>
+                <input type="text" name="" id="name" class="input__form" placeholder="Fyll i beskrivning">
+
+                <div class="radio-container">
+                    <label>
+                        <input type="radio" class="radio__input" name="selector" value="+">
+                        <span>
+                            <i class="fas fa-plus fa-2x"></i>
+                        </span>
+                    </label>
+                    <label>
+                        <input type="radio" class="radio__input" name="selector" value="-">
+                        <span>
+                            <i class="fas fa-minus fa-2x"></i>
+                        </span>
+                    </label>
+                </div>
+                <input type="number" name="" id="value" class="input__form" placeholder="0,00 kr">
+
+                <button class="add">Lägg till</button>
+
             </div>
-            <input type="number" name="" id="value" class="input__form" placeholder="0,00">
-            <button class="add">Lägg till</button>
         </div>
+
+
     </section>
 
     <div class="list-wrapper">
@@ -48,8 +70,11 @@
         <!-- Lista över inkomster -->
 
         <div class="list-container">
-            <h2 class="list__header">Lista över inkomster</h2>
-            <ul class="inkomst__list list-item"></ul>
+            <div class="expense-container">
+                <h2 class="list__header">Lista över inkomster</h2>
+                <ul class="inkomst__li-container list-item">
+                </ul>
+            </div>
 
             <!-- Inkomst totalsumma -->
             <div class="total-container">
@@ -61,8 +86,10 @@
 
         <!-- Lista över utgifter -->
         <div class="list-container">
-            <h2 class="list__header">Lista över utgifter</h2>
-            <ul class="utgifter__list list-item"></ul>
+            <div class="expense-container">
+                <h2 class="list__header">Lista över utgifter</h2>
+                <ul class="utgifter__li-container list-item"></ul>
+            </div>
 
             <!-- Utgifter totalsumma -->
             <div class="total-container">

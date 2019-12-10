@@ -5,6 +5,7 @@
 }
 
 @import "variables.scss";
+@import "animations.scss";
 
 body {
   background: $bg-col;
@@ -13,24 +14,42 @@ body {
   letter-spacing: 2px;
 }
 
+.question-icon {
+  float: right;
+}
+
 // --- Input form --- //
 
 .inputform-wrapper {
-  display: flex;
+  display: grid;
   justify-content: center;
-  align-content: center;
+  margin: 2rem 1rem auto;
 }
 
 .inputform-container {
+  text-align: right;
   margin: 1rem 0 auto;
   background: $box-col;
   box-shadow: $shadow;
   width: 20rem;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: 1fr;
+  padding: 0.5rem;
   border-radius: 5px;
-  text-align: center;
+
+  .fa-question-circle {
+    color: $font-2nd;
+    &:hover {
+      color: $font-col;
+      cursor: pointer;
+    }
+  }
+
+  .inputform-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 0.5rem;
+    width: 20rem;
+  }
 }
 
 .input__header {
@@ -47,18 +66,22 @@ body {
   border: none;
   border-bottom: 1px solid white;
   color: $font-col;
+  outline: none;
   &::placeholder {
     color: $font-2nd;
   }
   resize: none;
 }
 
+.radio-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: #fdd9d48e;
+  padding-top: 1.5rem;
 
-.radio-container{
-    display: flex;
-    justify-content: space-evenly;
-    color: #FDD9D4;
-    margin: 1rem;
+  i:hover {
+    cursor: pointer;
+  }
 }
 
 .radio__input {
@@ -73,12 +96,38 @@ body {
   color: $font-col;
 }
 
+// Tar bort pilarna i number-input i form.
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add {
+  background: $font-2nd;
+  color: $bg-col;
+  width: 140px;
+  border-radius: 20px;
+  height: 30px;
+  border: 3px solid $font-2nd;
+  margin-top: 1rem;
+  font-family: "Alata", sans-serif;
+  font-size: 1rem;
+  margin: auto;
+  margin-top: 1rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .list-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  margin: 1rem 12rem;
+  margin: 1rem auto;
   gap: 1rem;
+  max-width: 327.5px * 2;
 }
 
 .list-container {
@@ -86,10 +135,14 @@ body {
   box-shadow: $shadow;
   padding: 1rem;
   background: $box-col;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .list__header {
   border-bottom: 2px solid white;
+  margin-bottom: 8px;
 }
 
 .total__header {
@@ -103,6 +156,18 @@ body {
 
 .list-item {
   color: $font-2nd;
+
+  li {
+    &:hover {
+      i {
+        display: inline-block;
+      }
+    }
+
+    i {
+      display: none;
+    }
+  }
 }
 
 .total-item {
@@ -113,4 +178,64 @@ body {
 
 li {
   list-style: none;
+}
+
+// Ikoner
+
+
+// bubbla
+
+.helpbubble {
+  @extend .bubble;
+  display: none;
+  left: 58%;
+  top: 18%;
+}
+
+.warningbubble {
+  @extend .bubble;
+  display: none;
+  left: 57%;
+  top: 32%;
+}
+
+.bubble {
+  i {
+    display: none;
+    float: right;
+  }
+  text-align: left;
+  animation: fadein 200ms ease-in-out;
+  margin-left: 1rem;
+  align-self: center;
+  position: absolute;
+  font-size: 0.9rem;
+  padding: 7px;
+  color: $bg-col;
+  background: $font-2nd;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  letter-spacing: 0px;
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 8px 8px 8px 0;
+  border-color: transparent $font-2nd;
+  display: block;
+  width: 0;
+  z-index: 1;
+  left: -6px;
+  top: 60%;
+}
+
+.bubble:hover {
+  cursor: pointer;
+  i {
+    cursor: pointer;
+    display: inline-block;
+  }
 }
