@@ -146,6 +146,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .total__header {
+  display: inline;
   border-bottom: 1px solid white;
 }
 
@@ -167,20 +168,25 @@ input[type="number"]::-webkit-outer-spin-button {
     i {
       display: none;
     }
+
+span::after{
+  content: " kr";
+}
+
   }
 }
 
-.total-item {
-  &::after {
-    content: " kr";
-  }
-}
 
 li {
   list-style: none;
 }
 
-// Ikoner
+
+// Vinst
+
+.vinst-container{
+  text-align: center;
+}
 
 
 // bubbla

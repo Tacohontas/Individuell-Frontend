@@ -100,21 +100,24 @@ const utgift__list = document.querySelector(".utgifter__li-container");
 const inkomstTotal = document.querySelector(".inkomst__total");
 const utgiftTotal = document.querySelector(".utgifter__total");
 
+let inSpanSum = 0;
+let outSpanSum = 0;
+
+
 
 //Total summa inkomst
 
 inkomst__list.addEventListener("DOMSubtreeModified", updateIncome);
 
 function updateIncome() {
-  let spanSum = 0;
   const allInkomstSpan = document.querySelectorAll(".inkomst__li-price");
 
   for (let i = 0; i < allInkomstSpan.length; i++) {
-    spanSum += Number(allInkomstSpan[i].innerHTML);
+    inSpanSum += Number(allInkomstSpan[i].innerHTML);
   }
 
-  inkomstTotal.innerHTML = Number(spanSum);
-  vinstTotal.innerHTML = inkomstTotal.innerHTML - utgiftTotal.innerHTML;
+  inkomstTotal.innerHTML = `${Number(inSpanSum)} kr`;
+  vinstTotal.innerHTML = `${inSpanSum - outSpanSum} kr`;
 
 }
 
@@ -123,15 +126,14 @@ function updateIncome() {
 utgift__list.addEventListener("DOMSubtreeModified", updateOut);
 
 function updateOut() {
-  let spanSum = 0;
   const allUtgiftSpan = document.querySelectorAll(".utgifter__li-price");
 
   for (let i = 0; i < allUtgiftSpan.length; i++) {
-    spanSum += Number(allUtgiftSpan[i].innerHTML);
+    outSpanSum += Number(allUtgiftSpan[i].innerHTML);
   }
 
-  utgiftTotal.innerHTML = Number(spanSum);
-  vinstTotal.innerHTML = inkomstTotal.innerHTML - utgiftTotal.innerHTML;
+  utgiftTotal.innerHTML = `${Number(outSpanSum)} kr`;
+  vinstTotal.innerHTML = `${inSpanSum - outSpanSum} kr`;
 }
 
 
