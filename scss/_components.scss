@@ -1,5 +1,4 @@
 // Bubbles
-
 .bubble {
   i {
     display: none;
@@ -42,7 +41,6 @@
 }
 
 // Button
-
 .btn {
   background: $font-2nd;
   color: $bg-col;
@@ -81,7 +79,7 @@
   color: $font-2nd;
 
   li {
-    animation: fadein 0.5s;
+    animation: fadein 0.2s;
 
     &:hover {
       i {
@@ -103,4 +101,10 @@
 .list__header {
   border-bottom: 2px solid white;
   margin-bottom: 8px;
+}
+
+footer{
+  text-align: center;
+  font-size: 80%;
+  opacity: 0.5;
 }
