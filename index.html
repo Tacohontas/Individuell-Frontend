@@ -13,16 +13,14 @@
 </head>
 
 <body>
-
-
     <!-- Bubblor-->
-    <div class="warningbubble">
-        <i class="removeIcon far fa-times-circle"></i>
+    <div class="bubble--warning">
+        <i class="icon--remove far fa-times-circle"></i>
         <p class="warningtext"></p>
     </div>
 
-    <div class="helpbubble">
-        <i class="removeIcon far fa-times-circle"></i>
+    <div class="bubble--help">
+        <i class="icon--remove far fa-times-circle"></i>
         <ul>
             <li>1. Beskriv din inkomst eller utgift.</li>
             <li>2. Välj + för inkomst eller - för utgift.</li>
@@ -32,14 +30,12 @@
     </div>
 
     <!-- Input form -->
-    <section class="inputform-wrapper">
-
-        <div class="inputform-container">
-            <i class="helpIcon fas fa-question-circle"></i>
-            <div class="inputform-grid">
+    <section class="input-section">
+        <div class="input-wrapper">
+            <i class="icon--help fas fa-question-circle"></i>
+            <div class="input-gridcontainer">
                 <h2 class="input__header">Räkna ut din vinst!</h2>
                 <input type="text" name="" id="name" class="input__form" placeholder="Fyll i beskrivning">
-
                 <div class="radio-container">
                     <label>
                         <input type="radio" class="radio__input" name="selector" value="+">
@@ -55,52 +51,45 @@
                     </label>
                 </div>
                 <input type="number" name="" id="value" class="input__form" placeholder="0,00 kr">
-
-                <button class="add">Lägg till</button>
-
+                <button class="addBtn">Lägg till</button>
             </div>
         </div>
-
-
     </section>
-    
-    <div class="list-wrapper">
-        <!-- Lista över inkomster -->
 
-        <div class="incomelist list-container">
-            <div class="expense-container">
+    <section class="list-section">
+        <!-- Lista över inkomster -->
+        <div class="income list-container">
+            <div class="spec-container">
                 <h2 class="list__header">Dina inkomster</h2>
-                <ul class="inkomst__li-container list-item">
+                <ul class="income__list list-item">
                 </ul>
             </div>
 
             <!-- Inkomst totalsumma -->
             <div class="total-container">
                 <h3 class="total__header">Totalt</h3>
-                <div class="inkomst__total total-item"></div>
+                <div class="income__total"></div>
             </div>
         </div>
 
-
         <!-- Lista över utgifter -->
-        <div class="expenselist list-container">
-            <div class="expense-container">
+        <div class="expenses list-container">
+            <div class="spec-container">
                 <h2 class="list__header">Dina utgifter</h2>
-                <ul class="utgifter__li-container list-item"></ul>
+                <ul class="expenses__list list-item"></ul>
             </div>
 
             <!-- Utgifter totalsumma -->
             <div class="total-container">
                 <h3 class="total__header">Totalt</h3>
-                <div class="utgifter__total total-item"></div>
+                <div class="expenses__total"></div>
             </div>
         </div>
 
-    </div>
+    </section>
 
-   <!-- Vinst  -->
-
-   <div class="vinst-container">
+    <!-- Vinst  -->
+    <div class="vinst-container">
         <h2>Total:</h2>
         <h1 class="vinst"></h1>
     </div>

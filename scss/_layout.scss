@@ -1,0 +1,143 @@
+/* --- Input section --- */
+
+.input-section {
+  display: grid;
+  justify-content: center;
+  margin: 2rem 1rem auto;
+
+  // Tar bort pilarna i number-input i form.
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.input-wrapper {
+  text-align: right;
+  margin: 1rem 0 auto;
+  background: $box-col;
+  box-shadow: $shadow;
+  width: 20rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.input-gridcontainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  padding: 0.5rem;
+  width: 20rem;
+}
+
+.input__header {
+  margin-bottom: 1rem;
+}
+
+.input__form {
+  height: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1rem; /* för att "nollställa" font-size. */
+  background: $box-col;
+  font-family: "Alata", sans-serif;
+  border: none;
+  border-bottom: 1px solid white;
+  color: $font-col;
+  outline: none;
+  &::placeholder {
+    color: $font-2nd;
+  }
+  resize: none;
+}
+
+.radio-container {
+  display: flex;
+  justify-content: space-evenly;
+  color: #fdd9d48e;
+  padding-top: 1.5rem;
+
+  i:hover {
+    cursor: pointer;
+  }
+
+  .radio__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked + span {
+      color: $font-col;
+    }
+  }
+}
+
+.addBtn {
+  @extend .btn;
+}
+
+/* ----- List-section ---- */
+
+.list-section {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+  gap: 1rem;
+  max-width: 655px;
+}
+
+// Income
+.income {
+  display: none;
+}
+
+// Expenses
+.expenses {
+  display: none;
+}
+
+// Income and Expenses total
+.total__header {
+  display: inline;
+  border-bottom: 1px solid white;
+}
+
+.total-container {
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+// Vinst
+.vinst-container {
+  text-align: center;
+  display: none;
+  animation: fadein 0.8s;
+}
+
+// bubbles
+.bubble--help {
+  @extend .bubble;
+  display: none;
+  left: 58%;
+  top: 18%;
+}
+
+.bubble--warning {
+  @extend .bubble;
+  display: none;
+  left: 57%;
+  top: 32%;
+}
+
+/* --- Icons --- */
+
+.icon--help {
+    color: $font-2nd;
+    &:hover {
+      color: $font-col;
+      cursor: pointer;
+    }
+  }

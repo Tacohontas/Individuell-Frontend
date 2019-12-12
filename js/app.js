@@ -1,73 +1,64 @@
-// test ta fram containers
-const inkomstBox = document.querySelector(".incomelist")
-const utgiftBox = document.querySelector(".expenselist")
+// Inkomst- och utgift-containers
+const incomeBox = document.querySelector(".income")
+const expensesBox = document.querySelector(".expenses")
 // bubblor!
-const helpBubble = document.querySelector(".helpbubble");
-const warningBubble = document.querySelector(".warningbubble");
-const removeIcon = document.querySelectorAll(".removeIcon");
-const removeListIcon = document.getElementsByClassName("removelisticon");
-const helpIcon = document.querySelector(".helpIcon");
+const bubbleHelp = document.querySelector(".bubble--help");
+const bubbleWarning = document.querySelector(".bubble--warning");
+// Ikoner
+const removeIcon = document.querySelectorAll(".icon--remove");
+const removeListIcon = document.getElementsByClassName("icon--listremove");
+const helpIcon = document.querySelector(".icon--help");
+// Varningstext
 const warningText = document.querySelector(".warningtext");
+// Skapa ikoner
+const createRemoveIcon = '<i class="icon--listremove far fa-times-circle"></i>';
 
-// Create icons
-const createRemoveIcon = '<i class="removelisticon far fa-times-circle"></i>';
-
-// Tar bort bubbla
+// Tar bort bubbla (med hjälp av remove-ikon)
 for (let i = 0; i < removeIcon.length; i++)
   removeIcon[i].addEventListener("click", function() {
     this.parentElement.style.display = "none";
   });
 
-// Tar fram bubbla
+// Tar fram bubbla (med hjälp av hjälp-ikon)
 helpIcon.addEventListener("click", function() {
-  helpBubble.style.display = "inline-block";
+  bubbleHelp.style.display = "inline-block";
 });
 
-// Felmeddelanden:
-
-let needFormInput = `Hoppsan hejsan! <br>Du behöver fylla i samtliga fält ;)`;
-let needSelectorInput = `Oj oj! <br> Du glömde klicka på plus eller minus-tecknet! :)`;
+// Felmeddelande-strings:
+let needFormInput = `Hoppsan hejsan! <br>Du behöver fylla i samtliga fält. :)`;
+let needSelectorInput = `Oj oj! <br>Du glömde klicka på plus eller minus-tecknet! :)`;
 
 // Räknaknappen
-const addBtn = document.querySelector(".add");
+const addBtn = document.querySelector(".addBtn");
 addBtn.addEventListener("click", addToLists);
-
-// Funktioner
-
 function addToLists() {
-  const skapaLi = document.createElement("li"); // Skapar ett <li> - element.
-  const inkomst__list = document.querySelector(".inkomst__li-container");
-  const utgifter__list = document.querySelector(".utgifter__li-container");
+  const createLi = document.createElement("li"); // Skapar ett <li> - element.
+  const incomeList = document.querySelector(".income__list");
+  const expensesList = document.querySelector(".expenses__list");
   const formName = document.querySelector("#name").value;
   const formValue = document.querySelector("#value").value; // Selectar
-  const radioValue = document.querySelectorAll(".radio__input");
-  const inkomstTotal = document.querySelector(".inkomst__total");
-  const inkomstTotalValue = document.querySelector(".inkomst__total").innerHTML; // Det som är inuti inkomstTotal-div
-  const utgifterTotal = document.querySelector(".utgifter__total");
-  const utgifterTotalValue = document.querySelector(".utgifter__total")
-    .innerHTML;
-  const totalDiv = document.querySelector(".vinst");
+  const radioInput = document.querySelectorAll(".radio__input");
 
   // Stäng varningsmeddelanden om de är uppe:
-  warningBubble.style.display = "none";
+  bubbleWarning.style.display = "none";
 
   if (formName !== "" && formValue !== "") {
-    if (radioValue[0].checked) {
-      inkomstBox.style.display = "flex";
-      inkomst__list.appendChild(skapaLi);
-      skapaLi.setAttribute("class", "inkomst__li");
-      skapaLi.innerHTML = `${formName} <span class="inkomst__li-price">${formValue}</span> ${createRemoveIcon}`;
+    if (radioInput[0].checked) {
+      incomeBox.style.display = "flex";
+      incomeList.appendChild(createLi);
+      // createLi.setAttribute("class", "inkomst__li");
+      createLi.innerHTML = `${formName} <span class="income__li-price">${formValue}</span> ${createRemoveIcon}`;
 
       for (let i = 0; i < removeListIcon.length; i++)
         removeListIcon[i].addEventListener("click", function() {
           this.parentElement.remove();
         });
      
-    } else if (radioValue[1].checked) {
-      utgiftBox.style.display = "flex";
-      utgifter__list.appendChild(skapaLi);
-      skapaLi.setAttribute("class", "utgift__li");
-      skapaLi.innerHTML = `${formName} <span class="utgifter__li-price">${formValue}</span> ${createRemoveIcon}`;
+    } else if (radioInput[1].checked) {
+      expensesBox.style.display = "flex";
+      expensesList.appendChild(createLi);
+      // createLi.setAttribute("class", "utgift__li");
+      createLi.innerHTML = `${formName} <span class="expenses__li-price">${formValue}</span> ${createRemoveIcon}`;
 
       for (let i = 0; i < removeListIcon.length; i++)
         removeListIcon[i].addEventListener("click", function() {
@@ -76,63 +67,66 @@ function addToLists() {
 
     } else {
       // Om man inte valt värde i radio-input. (plus eller minus);
-      console.log("välj selector");
-      warningBubble.style.display = "inline-block";
+      bubbleWarning.style.display = "inline-block";
       warningText.innerHTML = needSelectorInput;
     }
   } else {
     // Om fälten ej är ifyllda.
-    console.log("fyll i fält");
-    warningBubble.style.display = "inline-block";
+    bubbleWarning.style.display = "inline-block";
     warningText.innerHTML = needFormInput;
   }
 }
 
-//  RÄKNA UT TOTAL
+/* ---- RÄKNA UT TOTAL ---- */
 const vinstTotal = document.querySelector(".vinst");
-const inkomst__list = document.querySelector(".inkomst__li-container");
-const utgift__list = document.querySelector(".utgifter__li-container");
-const inkomstTotal = document.querySelector(".inkomst__total");
-const utgiftTotal = document.querySelector(".utgifter__total");
+const incomeList = document.querySelector(".income__list");
+const expensesList = document.querySelector(".expenses__list");
+const incomeTotal = document.querySelector(".income__total");
+const expensesTotal = document.querySelector(".expenses__total");
 
-let inSpanSum = 0;
-let outSpanSum = 0;
+//MutationObserver config
+const config = {
+  childList: true,  // target's children observeras (Not in a creepy way.)
+  subtree: true     // target's descendents observeras. (Också ganska creepy.)
+};
 
+let incomeLiPriceSum = 0;
+let expensesLiPriceSum = 0;
 
-
-//Total summa inkomst
-
-inkomst__list.addEventListener("DOMSubtreeModified", updateIncome);
-
+// Total summa inkomst
+const updateIncomeObs = new MutationObserver(updateIncome);
+updateIncomeObs.observe(incomeList, config);
 function updateIncome() {
-  const allInkomstSpan = document.querySelectorAll(".inkomst__li-price");
-  inSpanSum = 0;
-  for (let i = 0; i < allInkomstSpan.length; i++) {
-    inSpanSum += Number(allInkomstSpan[i].innerHTML);
+  const incomeLiPrice = document.querySelectorAll(".income__li-price");
+  incomeLiPriceSum = 0;
+  for (let i = 0; i < incomeLiPrice.length; i++) {
+    incomeLiPriceSum += Number(incomeLiPrice[i].innerHTML);
   }
 
-  inkomstTotal.innerHTML = `${Number(inSpanSum)} kr`;
-  vinstTotal.innerHTML = `${inSpanSum - outSpanSum} kr`;
+  incomeTotal.innerHTML = `${Number(incomeLiPriceSum)} kr`;
+  vinstTotal.innerHTML = `${incomeLiPriceSum - expensesLiPriceSum} kr`;
 }
 
 // Totalsumma utgifter
-
-utgift__list.addEventListener("DOMSubtreeModified", updateOut);
-
+const updateOutObs = new MutationObserver(updateOut);
+updateOutObs.observe(expensesList, config);
 function updateOut() {
-  const allUtgiftSpan = document.querySelectorAll(".utgifter__li-price");
-  outSpanSum = 0;
-  for (let i = 0; i < allUtgiftSpan.length; i++) {
-    outSpanSum += Number(allUtgiftSpan[i].innerHTML);
+  const expensesLiPrice = document.querySelectorAll(".expenses__li-price");
+  expensesLiPriceSum = 0;
+  for (let i = 0; i < expensesLiPrice.length; i++) {
+    expensesLiPriceSum += Number(expensesLiPrice[i].innerHTML);
   }
 
-  utgiftTotal.innerHTML = `${Number(outSpanSum)} kr`;
-  vinstTotal.innerHTML = `${inSpanSum - outSpanSum} kr`;
+  expensesTotal.innerHTML = `${Number(expensesLiPriceSum)} kr`;
+  vinstTotal.innerHTML = `${incomeLiPriceSum - expensesLiPriceSum} kr`;
 }
 
-vinstTotal.addEventListener("DOMSubtreeModified", function(){
-  const vinstcontainer = document.querySelector(".vinst-container");
-  vinstcontainer.style.display = "block";
-});
+// Vinst
+const updateTotalObs = new MutationObserver(updateTotal);
+updateTotalObs.observe(vinstTotal, config);
+function updateTotal(){
+  const vinstContainer = document.querySelector(".vinst-container");
+  vinstContainer.style.display = "block";
+}
 
 
