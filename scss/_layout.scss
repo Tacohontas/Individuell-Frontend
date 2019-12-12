@@ -28,7 +28,6 @@
   grid-template-columns: 1fr;
   text-align: center;
   padding: 0.5rem;
-  width: 20rem;
 }
 
 .input__header {
@@ -50,6 +49,13 @@
     color: $font-2nd;
   }
   resize: none;
+
+  &[type="number"] {
+    /* För att fixa mozilla-styling */
+    -moz-appearance: textfield;
+    width: 100%; 
+  }
+
 }
 
 .radio-container {
